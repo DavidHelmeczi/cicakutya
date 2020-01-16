@@ -33,9 +33,12 @@ function durata($runtime){
     }
     
     else{return False;}}?>
-    <h1>Filme din genul: <?php echo $_GET['genre'];?> </h1><?php
-    $moviesFiltered=array_filter($movies, "get_movie_genre");
-    if(count($moviesFiltered) > 0){$movies = $moviesFiltered;}
+    <?php
+    $movies=array_filter($movies, "get_movie_genre");
+    if(count($movies) > 0){?> 
+    <h1>Filme din genul: <?php echo $_GET['genre'];?> </h1> 
+    <?php }
+    else { ?><h2>Nu exista genul selectat. <a href="archive.php">Inapoi</a> la archiva</h2>  <?php  }
     }
 
     if(isset($_GET['s']) and $_GET['s'] and $_GET['s'] != " "){
