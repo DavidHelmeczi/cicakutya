@@ -1,9 +1,14 @@
+html {
+    height: 100%;
+}
+
 body {
     background-image: url(images/bg.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     color: white;
+    height: 100%;
 }
 
 h2 {
