@@ -27,9 +27,10 @@ if(strlen($plot) > 100){ echo $plotscurt;} else { echo $plot;}?></div><?php
 			$totiactori=array_unique($totiactori);
 			sort($totiactori);?>
 		</ul>
+		<?php if(count($totiactori)>0){ ?>
 		<div class='fixed-sidebar-text'>
 	<?php foreach($totiactori as $actor)
-	print nl2br("$actor \n");?>
+	print nl2br("$actor \n");}?>
 </div>
 		
 
