@@ -39,6 +39,7 @@ input[type="text"] {
 }
 </style>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<title> Archiva filme </title>
 		<meta charset="utf-8">
 		<title>Tema 5</title>
 		<div class="navbar">
