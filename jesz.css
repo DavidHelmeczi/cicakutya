@@ -1,0 +1,28 @@
+body {
+    background-image: url(images/bg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+}
+
+h2 {
+    color: white;
+    margin-left: 20px;
+}
+
+img {
+    max-width: 300px;
+    height: auto;
+}
+
+li {
+    overflow: auto;
+}
+
+@media screen and (min-width: 600px) {
+    img {
+        float: left;
+        clear: left;
+    }
+}
