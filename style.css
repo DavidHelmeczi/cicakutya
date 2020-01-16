@@ -4,6 +4,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     color: white;
+    margin: 0px;
 }
 
 h2 {
@@ -19,92 +20,88 @@ img {
 li {
     overflow: auto;
 }
+
 .text {
     width: max-content;
     position: relative;
     left: 5px;
-    
 }
 
 .fixed-sidebar-text {
-        width: 200px;
-        height: 90vh;
-        overflow: auto;
-        position: fixed;
-            right: 5px;
-            top: 60px;
-            
-background-color:#835f53;
-
-      }
-  
+    width: 200px;
+    height: 90vh;
+    overflow: auto;
+    position: fixed;
+    right: 5px;
+    top: 60px;
+    background-color: #835f53;
+}
 
 @media screen and (min-width: 600px) {
-        img {
-            float: left;
-            clear: left;
-        }}
+    img {
+        float: left;
+        clear: left;
+    }
+}
 
 .navbar {
-            background-color:#333;
-            overflow: auto;
-            white-space: nowrap;
-            position: sticky;
-            top: 2px;
-            right: 2px;
-            z-index: 1;
-          }
-          
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+    position: sticky;
+    top: 2px;
+    right: 2px;
+    z-index: 1;
+}
+
 .navbar a {
-            display: inline-block;
-            color: white;
-            text-align: center;
-            padding: 14px;
-            text-decoration: none;
-            border-style: inset;
-            border-width: 1px;
-          }
-          
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    border-style: inset;
+    border-width: 1px;
+}
+
 .navbar a:hover {
-            background-color: #777;
-          }
+    background-color: #777;
+}
 
 .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 20px;
-            background-color: #333;
-            color: white;
-            text-align: center;
-           
-          }
-          .navbar .searchbar_container {
-            float: right;
-           
-          }
-          
-          .navbar input[type=text] {
-            padding: 6px;
-            margin-top: 8px;
-            font-size: 17px;
-            border: none;
-            width: 35vh;
-          }
-          
-          .navbar .searchbar_container button {
-            float: right;
-            padding: 5px;
-            margin-top: 8px;
-            margin-right: 16px;
-            background: #ddd;
-            font-size: 17px;
-            border: none;
-            cursor: pointer;
-          }
-          
-          .navbar .searchbar_container button:hover {
-            background: #ccc;}
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
 
-        
+.navbar .searchbar_container {
+    float: right;
+}
+
+.navbar input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    width: 35vh;
+}
+
+.navbar .searchbar_container button {
+    float: right;
+    padding: 5px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.navbar .searchbar_container button:hover {
+    background: #ccc;
+}
