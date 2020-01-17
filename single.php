@@ -1,5 +1,7 @@
 <?php require_once("header.php")?>
-<?php 
+<?php  
+
+
 	$movieId=$_GET['movie_id'];
     if(isset($movieId) && $movieId && $movieId != ""){
         function get_movie($value){
@@ -17,8 +19,19 @@ if(count($moviesFiltered) > 0){
     foreach ($movies as $movie){$director=$movie->director;
 		$actori=explode(", ", $movie->actors);
     require("archive-movie.php");
-    $i=0;
 
+    
+    $i=0; ?>
+    <form action="<?php echo $currentUrl?>" method="post">
+    <p>Rate:</p>
+      <input type="radio" name="rating" value="1"> 1
+      <input type="radio" name="rating" value="2"> 2
+      <input type="radio" name="rating" value="3"> 3
+      <input type="radio" name="rating" value="4"> 4
+      <input type="radio" name="rating" value="5"> 5
+    <br>
+      <input type="submit" value="Trimite" >
+    </form><?php     
 					 if($director != "N/A"){?>
 						<div class='director'><?php echo "<br> Director: $director" ?></div><?php } ?>
                         <div class='genuri'><?php echo "<br> Genuri: "; foreach($genre as $gen){$i++;if($i==sizeof($genre)){echo "$gen" ;} else echo "$gen, ";}?> </div>

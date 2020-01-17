@@ -4,7 +4,8 @@
 				$genre=$movie->genres;
 				$runtime=$movie->runtime;
 				$actori=explode(", ", $movie->actors);
-			    $plot=$movie->plot;
+				$plot=$movie->plot;
+				
 				
 				if(@is_image("$movie->posterUrl")) $movie_image=$movie->posterUrl;
 				else $movie_image='http://www.theprintworks.com/wp-content/themes/psBella/assets/img/film-poster-placeholder.png';
