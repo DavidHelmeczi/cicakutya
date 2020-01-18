@@ -2,6 +2,8 @@
 <?php  
 
 
+
+
 	$movieId=$_GET['movie_id'];
     if(isset($movieId) && $movieId && $movieId != ""){
         function get_movie($value){
@@ -19,11 +21,22 @@ if(count($moviesFiltered) > 0){
     foreach ($movies as $movie){$director=$movie->director;
 		$actori=explode(", ", $movie->actors);
     require("archive-movie.php");
+    $i=0;
 
-    
-    $i=0; ?>
+    if(!isset($ratings["$movie->title"])){ 
+      $average_rating = "Fii primul care acordă o notă acestui film";
+      $ratings["$movie->title"][0]=" ";
+    }  
+    else{
+$average_rating = substr(array_sum($ratings["$movie->title"])/(count($ratings["$movie->title"])-1),0,4);
+}
+
+ ?>
+
+
+
     <form action="<?php echo $currentUrl?>" method="post">
-    <p>Rate:</p>
+    <p>Rate:<?php echo " $average_rating" ?> </p>
       <input type="radio" name="rating" value="1"> 1
       <input type="radio" name="rating" value="2"> 2
       <input type="radio" name="rating" value="3"> 3
@@ -31,7 +44,16 @@ if(count($moviesFiltered) > 0){
       <input type="radio" name="rating" value="5"> 5
     <br>
       <input type="submit" value="Trimite" >
-    </form><?php     
+      
+    </form><?php
+    array_push($ratings["$movie->title"], $_POST["rating"]);
+    $json_data = json_encode($ratings);
+file_put_contents('movies_rating.json', $json_data);
+     
+
+
+
+       
 					 if($director != "N/A"){?>
 						<div class='director'><?php echo "<br> Director: $director" ?></div><?php } ?>
                         <div class='genuri'><?php echo "<br> Genuri: "; foreach($genre as $gen){$i++;if($i==sizeof($genre)){echo "$gen" ;} else echo "$gen, ";}?> </div>
