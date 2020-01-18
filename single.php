@@ -69,11 +69,6 @@ $average_rating = substr(array_sum($ratings["$movie->title"])/(count($ratings["$
 echo "Punctaj mediu: $average_rating bazat pe ", count($ratings["$movie->title"]), ' punctaje' ;
 }
 
-     
-
-
-
-       
 					 if($director != "N/A"){?>
 						<div class='director'><?php echo "<br> Director: $director" ?></div><?php } ?>
                         <div class='genuri'><?php echo "<br> Genuri: "; foreach($genre as $gen){$i++;if($i==sizeof($genre)){echo "$gen" ;} else echo "$gen, ";}?> </div>
