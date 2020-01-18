@@ -67,8 +67,8 @@ if(!isset($ratings["$movie->title"])){
 else{
 $average_rating = substr(array_sum($ratings["$movie->title"])/(count($ratings["$movie->title"])),0,4);
 echo "Punctaj mediu: $average_rating bazat pe ", count($ratings["$movie->title"]), ' punctaje' ;
-}
-
+} ?><br><br><div class="plot"><?php
+echo $plot;?></div><?php
 					 if($director != "N/A"){?>
 						<div class='director'><?php echo "<br> Director: $director" ?></div><?php } ?>
                         <div class='genuri'><?php echo "<br> Genuri: "; foreach($genre as $gen){$i++;if($i==sizeof($genre)){echo "$gen" ;} else echo "$gen, ";}?> </div>
