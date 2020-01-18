@@ -1,7 +1,21 @@
 <?php require_once("header.php")?>
 <?php  
 
+session_start();
 
+if ( ! empty( $_POST ) ) {
+    $_SESSION["POST"] = $_POST;
+      if ( ! headers_sent() ) {
+        header( "location: " . $currentUrl, true, 303 );
+        die();
+    }
+}
+
+
+if ( isset( $_SESSION["POST"] ) ) {
+    $_POST = $_SESSION["POST"];
+     $_SERVER['REQUEST_METHOD'] = 'POST';
+}
 
 
 	$movieId=$_GET['movie_id'];
@@ -23,20 +37,14 @@ if(count($moviesFiltered) > 0){
     require("archive-movie.php");
     $i=0;
 
-    if(!isset($ratings["$movie->title"])){ 
-      $average_rating = "Fii primul care acordă o notă acestui film";
-      $ratings["$movie->title"][0]=" ";
-    }  
-    else{
-$average_rating = substr(array_sum($ratings["$movie->title"])/(count($ratings["$movie->title"])-1),0,4);
-}
+
 
  ?>
 
 
 
     <form action="<?php echo $currentUrl?>" method="post">
-    <p>Rate:<?php echo " $average_rating" ?> </p>
+    <p>Rate : </p>
       <input type="radio" name="rating" value="1"> 1
       <input type="radio" name="rating" value="2"> 2
       <input type="radio" name="rating" value="3"> 3
@@ -45,10 +53,22 @@ $average_rating = substr(array_sum($ratings["$movie->title"])/(count($ratings["$
     <br>
       <input type="submit" value="Trimite" >
       
-    </form><?php
-    array_push($ratings["$movie->title"], $_POST["rating"]);
+    </form><?php if(isset($_POST['rating'])){
+      if(!isset($ratings["$movie->title"])){ 
+      $ratings["$movie->title"]=array();}
+    array_push($ratings["$movie->title"], $_POST["rating"]);}
     $json_data = json_encode($ratings);
 file_put_contents('movies_rating.json', $json_data);
+if(!isset($ratings["$movie->title"])){ 
+  $average_rating = "Fii primul care acordă o notă acestui film";
+  
+  echo " $average_rating" ;
+}  
+else{
+$average_rating = substr(array_sum($ratings["$movie->title"])/(count($ratings["$movie->title"])),0,4);
+echo "Punctaj mediu: $average_rating bazat pe ", count($ratings["$movie->title"]), ' punctaje' ;
+}
+
      
 
 
@@ -67,5 +87,7 @@ file_put_contents('movies_rating.json', $json_data);
 </div></div><?php
 } else { ?>
 <h2>Nu exista filmul selectat. <a href="archive.php">Inapoi</a> la archiva</h2> <?php }
+
+unset( $_SESSION["POST"] );
 ?>
 <?php require_once("footer.php")?>

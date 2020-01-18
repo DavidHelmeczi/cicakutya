@@ -4,7 +4,9 @@ body {
     background-attachment: fixed;
     background-size: cover;
     color: white;
-    margin: 0px;
+    margin:0px;
+    margin-left: 4px;
+
 }
 
 h2 {
@@ -62,6 +64,7 @@ li {
     text-decoration: none;
     border-style: inset;
     border-width: 1px;
+    height: auto;
 }
 
 .navbar a:hover {
@@ -81,6 +84,8 @@ li {
 
 .navbar .searchbar_container {
     float: right;
+    height: 5vh;
+    overflow-y: hidden;
 }
 
 .navbar input[type=text] {
@@ -89,17 +94,19 @@ li {
     font-size: 17px;
     border: none;
     width: 35vh;
+    height: auto;
 }
 
 .navbar .searchbar_container button {
     float: right;
-    padding: 5px;
+    padding: 6px;
     margin-top: 8px;
     margin-right: 16px;
     background: #ddd;
     font-size: 17px;
     border: none;
     cursor: pointer;
+    height: auto;
 }
 
 .navbar .searchbar_container button:hover {
