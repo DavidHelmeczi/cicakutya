@@ -1,8 +1,35 @@
-<?php require_once("header.php")?>
-<?php  
+<?php $movies = json_decode(file_get_contents('https://raw.githubusercontent.com/yegor-sytnyk/movies-list/master/db.json'))->movies; ?>
+<style>
+.content {
+  max-width: 500px;
+  margin: auto;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(0,0,0,1));
+  font-size: 20px;
+  padding: 300px;
+  padding-top: 0px;
+  padding-bottom: 40px;
+}
+</style>
 
+<?php require_once("header.php")?>
+
+<div class="content">
+
+<?php 
+ 
+error_reporting(0);
 session_start();
 
+$dbServername = "127.0.0.1";
+$dbUsername = "root";
+$dbPasswd = "";
+$dbName = "ratingsystem";
+
+$conn = mysqli_connect($dbServername, $dbUsername, $dbPasswd, $dbName);
+
+if(!$conn){
+    echo "<p>Couldn't connect to Database!</p>";
+}	
 if ( ! empty( $_POST ) ) {
     $_SESSION["POST"] = $_POST;
       if ( ! headers_sent() ) {
@@ -41,33 +68,39 @@ if(count($moviesFiltered) > 0){
 
  ?>
 
-
-
     <form action="<?php echo $currentUrl?>" method="post">
     <p>Rate : </p>
-      <input type="radio" name="rating" value="1"> 1
-      <input type="radio" name="rating" value="2"> 2
-      <input type="radio" name="rating" value="3"> 3
-      <input type="radio" name="rating" value="4"> 4
-      <input type="radio" name="rating" value="5"> 5
+      <input type="radio" name="rate" value="1"> 1
+      <input type="radio" name="rate" value="2"> 2
+      <input type="radio" name="rate" value="3"> 3
+      <input type="radio" name="rate" value="4"> 4
+      <input type="radio" name="rate" value="5"> 5
     <br>
-      <input type="submit" value="Trimite" >
-      
-    </form><?php if(isset($_POST['rating'])){
-      if(!isset($ratings["$movie->title"])){ 
-      $ratings["$movie->title"]=array();}
-    array_push($ratings["$movie->title"], $_POST["rating"]);}
-    $json_data = json_encode($ratings);
-file_put_contents('movies_rating.json', $json_data);
-if(!isset($ratings["$movie->title"])){ 
-  $average_rating = "Fii primul care acordă o notă acestui film";
-  
-  echo " $average_rating" ;
-}  
-else{
-$average_rating = substr(array_sum($ratings["$movie->title"])/(count($ratings["$movie->title"])),0,4);
-echo "Punctaj mediu: $average_rating bazat pe ", count($ratings["$movie->title"]), ' punctaj(e)' ;
-} ?><br><br><div class="plot"><?php
+      <input type="submit" name="submit" value="Trimite" >
+    </form>
+	<?php
+			$titlu = $movie->title;
+			$RateGiven = null;
+			
+				if(isset($_POST['submit'])){
+					
+				$RateGiven = $_POST['rate'];
+				}
+			
+			if($RateGiven!=null){
+				$sql = "INSERT INTO stars (ID, movieName, rateGiven) VALUES ('$movieId', '$titlu', '$RateGiven');";
+			}
+			
+      $result = mysqli_query($conn, $sql);	
+      $averageRatingQuery = "SELECT ID, ROUND(AVG(rateGiven),2) FROM `stars` WHERE ID=$movieId GROUP BY ID";
+      $averageRating = mysqli_query($conn, $averageRatingQuery);
+      $row = mysqli_fetch_assoc($averageRating);
+      if($row["ROUND(AVG(rateGiven),2)"]!=NULL){
+        echo 'Punctajul medie este ', $row["ROUND(AVG(rateGiven),2)"], "<br>";} else echo "Fii primul care acorda punctaj! <br>";
+			
+	  ?>
+    
+<br><div class="plot"><?php
 echo $plot;?></div><?php
 					 if($director != "N/A"){?>
 						<div class='director'><?php echo "<br> Director: $director" ?></div><?php } ?>
@@ -77,7 +110,7 @@ echo $plot;?></div><?php
 						echo "<br> Actori: ";
 						foreach($actori as $actor){
 							print nl2br("$actor \n");} ?>
-                        </div> <?php echo "<br> $plot";
+                        </div> <?php 
 						}?>
 </div></div><?php
 } else { ?>
@@ -86,3 +119,4 @@ echo $plot;?></div><?php
 unset( $_SESSION["POST"] );
 ?>
 <?php require_once("footer.php")?>
+</div>

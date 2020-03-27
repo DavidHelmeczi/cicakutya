@@ -1,4 +1,18 @@
 <?php require_once("header.php") ?>
+<style>
+.Container{
+  max-width: 500px;
+  margin: auto;
+  background-color: rgba(0,0,0,0.5);
+  font-size: 20px;
+  padding: 265px;
+  padding-top: 0px;
+  padding-bottom: 40px;
+}
+.fixed-sidebar-text{
+	background-color: rgba(0,0,0,0.5);
+}
+</style>
 <?php 
    $totiactori=array(); ?>
 		<ul>
@@ -7,6 +21,7 @@
 
 foreach ($movies as $movie){
 require("archive-movie.php");?>
+<div class= "Container">
 <div class="plot"><?php
 if(strlen($plot) > 100){ echo $plotscurt;} else { echo $plot;}?></div><?php
 						 foreach($actori as $actor){
@@ -35,4 +50,4 @@ if(strlen($plot) > 100){ echo $plotscurt;} else { echo $plot;}?></div><?php
 		
 
 <?php require_once("footer.php") ?>
- 
+ </div>

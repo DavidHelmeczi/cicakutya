@@ -8,6 +8,10 @@
 }
 td a{
     text-decoration: none;
+	font-size: 40px;
+}
+tr{
+	font-size: 50px;
 }
     
 </style><?php
@@ -21,7 +25,7 @@ foreach ($genres as $gen) {
     $genuri++;
 }
 
-?> <h1 align="center">Bine ati venit! </h1><h2> Vă punem la dispoziție o bază de <?php echo $filme ?> filme împărțite pe <?php echo $genuri ?> genuri. </h2>
+?> <h1 align="center">Bine ati venit! </h1><h2 align="center"> Vă punem la dispoziție o bază de <?php echo $filme ?> de filme împărțite pe <?php echo $genuri ?> genuri. </h2>
 <?php $noi=array();
 $vechi=array();
 $noi=array();

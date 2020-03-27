@@ -1,3 +1,15 @@
+<style>
+Container{
+  max-width: 500px;
+  margin: auto;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(0,0,0,1));
+  font-size: 20px;
+  padding: 300px;
+  padding-top: 0px;
+  padding-bottom: 40px;
+}
+</style>
+<div class="Container">
             <?php
                 $movieId = $movie->id;
 				$movie_year=$movie->year;
@@ -50,5 +62,5 @@
 					<div class= 'durata'>
 						<?php durata("$runtime")?></div> 
 
-
+</div>
                         

@@ -5,7 +5,9 @@ function durata($runtime){
                             while($minute>=60){
                                 $ore++;
                                 $minute-=60;}
-                                echo "$ore ore $minute minute";
+                                if($ore>1){
+                                echo "$ore ore $minute minute";}
+                                else{echo "$ore ora $minute minute";}
                         }
         
                         function is_image($url){
