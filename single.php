@@ -95,8 +95,11 @@ if(count($moviesFiltered) > 0){
       $averageRatingQuery = "SELECT ID, ROUND(AVG(rateGiven),2) FROM `stars` WHERE ID=$movieId GROUP BY ID";
       $averageRating = mysqli_query($conn, $averageRatingQuery);
       $row = mysqli_fetch_assoc($averageRating);
-      if($row["ROUND(AVG(rateGiven),2)"]!=NULL){
-        echo 'Punctajul medie este ', $row["ROUND(AVG(rateGiven),2)"], "<br>";} else echo "Fii primul care acorda punctaj! <br>";
+     if($row["ROUND(AVG(rateGiven),2)"]!=NULL){
+        echo 'Punctajul medie este ', $row["ROUND(AVG(rateGiven),2)"], "<br>";} elseif($conn) echo "Fii primul care acorda punctaj! <br>";
+        if(!$conn){
+          echo "<p>Conexiunea la baza de date n-a putut fi realizata</p>";
+      }	
 			
 	  ?>
     
